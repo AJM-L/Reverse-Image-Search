@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Search Result</title>
+  </head>
+  <body>
+    <h1>Similar Paintings: </h1>
+    <div>
+    <img src="{{image}}" alt="">
+
+    </div>
+    <div>
+      {% for image in result %}
+        <div style="margin-bottom: 20px;">
+          <h3>{{ image['folder'].replace("_", " ") }}</h3>
+          <img src="{{ url_for('image_file', filename=image['path'].split(image_folder)[-1]) }}" alt="Result Image" style="width: 200px; height: auto; margin: 10px;">
+        </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

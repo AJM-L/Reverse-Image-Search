@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Upload Image</title>
+  </head>
+  <body>
+    <h1>Upload an Image</h1>
+    <form action="{{ url_for('upload_image') }}" method="post" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <input type="submit" value="Upload">
+    </form>
+    <h2>Sample Images</h2>
+    <div>
+      {% for image in images %}
+        <div style="margin-bottom: 20px;">
+          <h3>{{ image.folder }}</h3>
+          <img src="{{ url_for('image_file', filename=image.path.split(image_folder)[-1][:]) }}" alt="Sample Image" style="width: 200px; height: auto; margin: 10px;">
+        </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
