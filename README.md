@@ -1,7 +1,7 @@
 <h1>Reverse Image Search for Painting Reccomendation</h1>
 
 <p>
-This project uses a kaggle <a href = "https://www.kaggle.com/datasets/mexwell/famous-paintings">dataset of famous paintings</a> and cosine similarity to retrieve images from the dataset that are similar to the input. It includes a jupyter notebook for file setup, and uses flask and html for the frontend. 
+This project uses a kaggle <a href = "https://www.kaggle.com/datasets/mexwell/famous-paintings">dataset of famous paintings</a> and cosine similarity to retrieve images from the dataset that are similar to the input. It includes a jupyter notebook for file setup, and uses flask and html for the frontend. Re-run the jupyter notebook if you decide to add photos to the dataset, run app.py if you want to use your own image(s) as queries. 
 </p>
 
 <h2>Setup</h2>
