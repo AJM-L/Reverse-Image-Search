@@ -3,6 +3,8 @@ from torchvision import models
 from torchvision import transforms
 import numpy as np
 from numpy.linalg import norm
+import torch.nn as nn
+import torch.nn.functional as F
 
 class Img2VecResnet18():
     def __init__(self):

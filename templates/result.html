@@ -11,6 +11,7 @@
 
     </div>
     <div>
+      <h3>Wow, Nice painting! it reminds me of {{ classification}}</h3>
       {% for image in result %}
         <div style="margin-bottom: 20px;">
           <h3>{{ image['folder'].replace("_", " ") }}</h3>
