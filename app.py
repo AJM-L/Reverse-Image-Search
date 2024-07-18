@@ -10,8 +10,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
+import random
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 UPLOAD_FOLDER = 'uploads/'
 IMAGE_FOLDER = 'images/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -34,7 +35,7 @@ def list_images_with_folders(folder):
 @app.route('/')
 def upload_form():
     # List images in the 'images' folder and its subfolders with folder names
-    images = list_images_with_folders(app.config['IMAGE_FOLDER'])
+    images = random.sample(list_images_with_folders(app.config['IMAGE_FOLDER']), 50)
     return render_template('upload.html', images=images, image_folder=app.config['IMAGE_FOLDER'])
 
 @app.route('/upload', methods=['POST'])
