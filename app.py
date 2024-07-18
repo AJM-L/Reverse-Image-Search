@@ -50,7 +50,7 @@ def upload_image():
         # Call your reverse image search function here
         result = reverse_image_search(filepath)
         classification = image_classification(filepath)
-        return render_template('result.html', result=result, classification= classification, image_folder=app.config['IMAGE_FOLDER'])
+        return render_template('result.html', result=result, classification= classification, image_path=filepath, image_folder=app.config['IMAGE_FOLDER'])
 
 @app.route('/images/<path:filename>')
 def image_file(filename):
@@ -120,7 +120,7 @@ def image_classification (image_path):
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
     classes = tuple()
     for root, dirs, files in os.walk("images"):
-        classes += tuple(dirs.sort())
+        classes += tuple(sorted(dirs))
     
     I = Image.open(image_path).convert('RGB')
     I = transform(I)
