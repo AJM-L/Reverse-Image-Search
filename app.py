@@ -10,8 +10,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
+import random
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 UPLOAD_FOLDER = 'uploads/'
 IMAGE_FOLDER = 'images/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -34,7 +35,7 @@ def list_images_with_folders(folder):
 @app.route('/')
 def upload_form():
     # List images in the 'images' folder and its subfolders with folder names
-    images = list_images_with_folders(app.config['IMAGE_FOLDER'])
+    images = random.sample(list_images_with_folders(app.config['IMAGE_FOLDER']), 50)
     return render_template('upload.html', images=images, image_folder=app.config['IMAGE_FOLDER'])
 
 @app.route('/upload', methods=['POST'])
@@ -50,7 +51,7 @@ def upload_image():
         # Call your reverse image search function here
         result = reverse_image_search(filepath)
         classification = image_classification(filepath)
-        return render_template('result.html', result=result, classification= classification, image_folder=app.config['IMAGE_FOLDER'])
+        return render_template('result.html', result=result, classification= classification, image_path=filepath, image_folder=app.config['IMAGE_FOLDER'])
 
 @app.route('/images/<path:filename>')
 def image_file(filename):
@@ -105,7 +106,6 @@ def reverse_image_search(image_path, number_results = 10):
     #sort list by similarity to query
     similarity.sort(key = lambda x: cosine_similarity(vec, allVectors[x]), reverse = True)
     result_paths = []
-    print(similarity)
     for image in similarity[:number_results]:
         result_paths.append({"path":(os.path.join(paths[image], image)), "folder" : str(paths[image].split("/")[-1])})
         print(image, cosine_similarity(vec, allVectors[image]))
@@ -120,7 +120,7 @@ def image_classification (image_path):
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
     classes = tuple()
     for root, dirs, files in os.walk("images"):
-        classes += tuple(dirs.sort())
+        classes += tuple(sorted(dirs))
     
     I = Image.open(image_path).convert('RGB')
     I = transform(I)

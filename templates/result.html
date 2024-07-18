@@ -1,17 +1,17 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Search Result</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Search Results</title>
+{% endblock %}
+
+{% block body %}
     <h1>Similar Paintings: </h1>
     <div>
-    <img src="{{image}}" alt="">
+    <img src="{{ url_for('image_file', filename=image_path) }}" alt="">
 
     </div>
     <div>
-      <h3>Wow, Nice painting! it reminds me of {{ classification}}</h3>
+      <h3>Wow, Nice painting! it reminds me of {{classification}}</h3>
       {% for image in result %}
         <div style="margin-bottom: 20px;">
           <h3>{{ image['folder'].replace("_", " ") }}</h3>
@@ -19,5 +19,4 @@
         </div>
       {% endfor %}
     </div>
-  </body>
-</html>
+{% endblock %}
