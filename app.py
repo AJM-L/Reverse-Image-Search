@@ -105,7 +105,6 @@ def reverse_image_search(image_path, number_results = 10):
     #sort list by similarity to query
     similarity.sort(key = lambda x: cosine_similarity(vec, allVectors[x]), reverse = True)
     result_paths = []
-    print(similarity)
     for image in similarity[:number_results]:
         result_paths.append({"path":(os.path.join(paths[image], image)), "folder" : str(paths[image].split("/")[-1])})
         print(image, cosine_similarity(vec, allVectors[image]))
