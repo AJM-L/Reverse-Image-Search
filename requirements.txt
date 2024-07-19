@@ -1,0 +1,8 @@
+# requirements
+flask
+torch
+pillow
+csv
+os
+numpy
+random
