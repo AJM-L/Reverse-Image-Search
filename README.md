@@ -6,11 +6,27 @@ Have you ever found a painting that you love, but have no idea how to find simil
   This project uses a kaggle <a href = "https://www.kaggle.com/datasets/mexwell/famous-paintings">dataset of famous paintings</a> and cosine similarity to retrieve images from the dataset that are similar to the input. It includes a jupyter notebook for file setup, and uses flask and html for the frontend. Re-run the jupyter notebook if you decide to add photos to the dataset, run app.py if you want to use your own image(s) as queries. 
 </p>
 
-<h2>Setup</h2>
+<h2>Running the App</h2>
 
 <p>
-install libraries
+install required libraries
 
 run app.py
+  
+</p>
+
+
+<h2>Adding images</h2>
+
+<p>
+install required libraries
+
+Add images to images folder. Make sure images have unique names and are placed in their perspective artist folder. If you decide to add more artists follow the format of Artist_Name using underscored instead of spaces. 
+
+Run ReverseImageSearch.ipynb to create the new vectors.
+
+Run ArtistClassification.ipynb to retrain the classifier
+
+Finally Run app.py.
   
 </p>
