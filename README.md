@@ -21,7 +21,7 @@ run app.py
 <p>
 install required libraries
 
-Add images to images folder. Make sure images have unique names and are placed in their perspective artist folder. If you decide to add more artists follow the format of Artist_Name using underscored instead of spaces. 
+Add images to images folder. Make sure images have unique names and are placed in their perspective artist folder. If you decide to add more artists follow the format of Artist_Name using underscores instead of spaces. 
 
 Run ReverseImageSearch.ipynb to create the new vectors.
 
