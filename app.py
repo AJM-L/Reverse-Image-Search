@@ -51,11 +51,14 @@ def upload_image():
         # Call your reverse image search function here
         result = reverse_image_search(filepath)
         classification = image_classification(filepath)
-        return render_template('result.html', result=result, classification= classification, image_path=filepath, image_folder=app.config['IMAGE_FOLDER'])
+        return render_template('result.html', result=result, classification= classification, image_path=filepath, image_folder=app.config['IMAGE_FOLDER'], upload_folder=app.config["UPLOAD_FOLDER"])
 
 @app.route('/images/<path:filename>')
 def image_file(filename):
     return send_from_directory(app.config['IMAGE_FOLDER'], filename)
+@app.route('/uploads/<path:filename>')
+def upload_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
 
@@ -86,7 +89,7 @@ class Net(nn.Module):
 
         return output
 
-def reverse_image_search(image_path, number_results = 10):
+def reverse_image_search(image_path, number_results = 12):
     inputDim = (224,224)
     transformationForCNNInput = transforms.Compose([transforms.Resize(inputDim)])
     allVectors = np.load('vectors.npz')
@@ -108,7 +111,6 @@ def reverse_image_search(image_path, number_results = 10):
     result_paths = []
     for image in similarity[:number_results]:
         result_paths.append({"path":(os.path.join(paths[image], image)), "folder" : str(paths[image].split("/")[-1])})
-        print(image, cosine_similarity(vec, allVectors[image]))
     return result_paths
 
 def image_classification (image_path):

@@ -21,3 +21,23 @@ form.uploads {
 #file-upload-button {
     background-color: black;
 }
+
+.resultImagesContainer {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+
+.imageTitle {
+    text-align: center;
+}
+
+.uploadImage {
+    display: block;
+    margin:auto;
+}
+
+.uploadTitle {
+    text-align: center;
+}

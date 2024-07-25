@@ -5,18 +5,21 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Similar Paintings: </h1>
+    <h1>Results: </h1>
     <div>
-    <img src="{{ url_for('image_file', filename=image_path) }}" alt="">
+      <h2 class="uploadTitle">Your Image</h2>
+    <img src="{{ url_for('upload_file', filename=image_path.split('/')[-1]) }}" alt="Uploaded Image" style="width:25%;" class="uploadImage">
 
     </div>
     <div>
-      <h3>Wow, Nice painting! it reminds me of {{classification}}</h3>
+      <h3>Wow, Nice painting! it reminds me of {{classification.replace("_", " ")}}</h3>
+      <div class="resultImagesContainer">
       {% for image in result %}
-        <div style="margin-bottom: 20px;">
-          <h3>{{ image['folder'].replace("_", " ") }}</h3>
-          <img src="{{ url_for('image_file', filename=image['path'].split(image_folder)[-1]) }}" alt="Result Image" style="width: 200px; height: auto; margin: 10px;">
+        <div  style="width: 25%; margin-bottom: 20px; ">
+          <h3 class="imageTitle">{{ image['folder'].replace("_", " ") }}</h3>
+          <img src="{{ url_for('image_file', filename=image['path'].split(image_folder)[-1]) }}" alt="Result Image" style="width: 100%; height: auto; margin: auto;">
         </div>
       {% endfor %}
+      </div>
     </div>
 {% endblock %}
